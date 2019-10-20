@@ -12,10 +12,10 @@ router.post("/register", (req, res) => {
     user.password = hash;
 
     Users.addNewUser(user)
-        .then(newUser => {
-            const token = generateToken(newUser);
-            delete newUser.password;
-            res.status(201).json({ newUser, token });
+        .then(new_user => {
+            const token = generateToken(new_user);
+            delete new_user.password;
+            res.status(201).json({ new_user, token });
         })
         .catch(error => {
             res.status(500).json(error);
@@ -23,9 +23,9 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    let { username, password } = req.body;
+    let { email, password } = req.body;
 
-    Users.findBy({ username })
+    Users.findBy({ email })
         .first()
         .then(user => {
             if (user && bcrypt.compareSync(password, user.password)) {
@@ -37,7 +37,7 @@ router.post("/login", (req, res) => {
                     token //return the token upon login
                 });
             } else {
-                res.status(401).json({ message: "Invalid Username or Password" });
+                res.status(401).json({ message: "Invalid Email or Password" });
             }
         })
         .catch(error => {
@@ -49,8 +49,8 @@ router.post("/login", (req, res) => {
 
 function generateToken(user) {
     const payload = {
-        subject: user.id, // standard claim = sub
-        username: user.username
+        id: user.id, // standard claim = sub
+        email: user.email
     };
     const options = {
         expiresIn: "7d"
