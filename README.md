@@ -336,7 +336,7 @@ When successful will return an HTTP status code of 200 (OK) and an array of sear
 <details>
 <summary><b>POST - Add an item to a user's favorites list</b></summary>
 <br>
-<b>Endpoint:</b> <code>BaseURL/api/items/favorites/:user_id</code>
+<b>Endpoint:</b> <code>BaseURL/api/favorites/:user_id</code>
 <br>
 <br>
 Restricted endpoint. Token required.

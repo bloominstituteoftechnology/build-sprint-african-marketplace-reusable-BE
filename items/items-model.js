@@ -11,13 +11,16 @@ module.exports = {
 };
 
 function getAllItems() {
-    return db("item");
+    return db("item").join("user", "item.user_id", "user.id")
+        .select("item.id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
 }
 
 function getItemById(id) {
     return db("item")
-        .where({ id })
-        .first();
+        .where("item.id", id)
+        .first()
+        .join("user", "item.user_id", "user.id")
+        .select("item.id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
 }
 
 function findBy(filter) {

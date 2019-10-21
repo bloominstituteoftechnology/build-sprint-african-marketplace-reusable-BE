@@ -36,6 +36,8 @@ async function getUsersFavorites(user_id) {
 
     const favorites = await db("favorite").where("favorite.user_id", user_id)
         .join("item", "favorite.item_id", "item.id")
+        .join("user", "favorite.user_id", "user.id")
+        .select("favorite.item_id", "favorite.user_id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "user.email", "user.username", "user.about", "user.avatar_url");
 
     return favorites;
 }

@@ -12,7 +12,7 @@ exports.up = function (knex) {
             .string('password', 128)
             .notNullable();
 
-        user.string('name', 128)
+        user.string('username', 128)
 
         user.string('about', 1500)
 
