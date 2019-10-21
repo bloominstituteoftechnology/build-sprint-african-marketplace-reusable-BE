@@ -17,21 +17,50 @@ router.get("/", (req, res) => {
 
 // ------------------- GET Item By Id /api/items/:id ------------------- //
 
-router.get("/:id", verifyItemExists, (req, res) => {
-    const id = req.params.id;
+router.get("/:id", verifyItemExists, async (req, res) => {
+    try {
+        const id = req.params.id;
+        const item = await Items.getItemById(id);
+        item.categories = await Items.getItemsCategories(id);
 
-    Items.getItemById(id)
-        .then(item => {
-            res.status(200).json(item);
+        res.status(200).json({ item });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+});
+
+// ------------- GET Item by Zip Code /api/items/zip/:zip_code ------------- //
+
+router.get("/zip/:zip_code", (req, res) => {
+    let zip_code = req.params.zip_code.toLowerCase();
+
+    Items.findBy({ zip_code })
+        .then(items => {
+            res.status(200).json(items)
         })
         .catch(err => {
-            res.status(500).json({ err });
+            res.status(500).json({ err })
         });
 });
+
+// ------------- GET Item by Item Name /api/items/name/:name ------------- //
+
+router.get("/name/:name", (req, res) => {
+    const name = req.params.name;
+    Items.findBy({ name })
+        .then(items => {
+            res.status(200).json(items)
+        })
+        .catch(err => {
+            res.status(500).json({ err })
+        });
+})
 
 // ---------------------- Post New Item /api/items ---------------------- //
 
 router.post("/", (req, res) => {
+    req.body.zip_code = req.body.zip_code.toLowerCase();
+
     Items.addNewItem(req.body)
         .then(item => {
             res.status(201).json(item)
@@ -46,6 +75,7 @@ router.post("/", (req, res) => {
 router.put("/:id", verifyItemExists, (req, res) => {
     const id = req.params.id;
     const changes = req.body;
+    req.body.zip_code = req.body.zip_code.toLowerCase();
 
     Items.updateItem(id, changes)
         .then(updatedItem => {
