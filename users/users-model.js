@@ -47,3 +47,4 @@ function deleteUser(id) {
 function getItemsByUser(id) {
     return db("item").where({ "user_id": id });
 }
+

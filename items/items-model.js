@@ -6,7 +6,8 @@ module.exports = {
     findBy,
     getItemById,
     updateItem,
-    deleteItem
+    deleteItem,
+    getItemsCategories
 };
 
 function getAllItems() {
@@ -20,6 +21,7 @@ function getItemById(id) {
 }
 
 function findBy(filter) {
+    console.log("filter", filter)
     return db("item").where(filter);
 }
 
@@ -41,4 +43,8 @@ function deleteItem(id) {
     return db("item")
         .where({ id })
         .del();
+}
+
+function getItemsCategories(id) {
+    return db("category").where({ "item_id": id });
 }
