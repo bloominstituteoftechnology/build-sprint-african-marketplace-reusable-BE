@@ -65,6 +65,62 @@ When successful will return status code of 200 (OK), the new item object and a t
 </details>
 
 <details>
+<summary><b>GET - Get a user by user id</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/users/:id</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well their list of favorite items. Here is an example:
+
+```
+{
+    "user": {
+        "id": 1,
+        "email": "admin@email.com",
+        "name": null,
+        "about": null,
+        "avatar_url": null,
+        "items": [
+            {
+                "id": 1,
+                "name": "rice",
+                "description": null,
+                "photo_url": null,
+                "zip_code": "65109C",
+                "price": 2,
+                "created_at": "2019-10-21T04:58:11.423Z",
+                "user_id": 1,
+                "categories": [
+                    {
+                        "id": 2,
+                        "type": "food",
+                        "item_id": 1
+                    }
+                ]
+            }
+        ],
+        "favorites": [
+            {
+                "item_id": 1,
+                "user_id": 1,
+                "id": 1,
+                "name": "rice",
+                "description": null,
+                "photo_url": null,
+                "zip_code": "65109C",
+                "price": 2,
+                "created_at": "2019-10-21T04:58:11.423Z"
+            }
+        ]
+    }
+}
+```
+</details>
+
+<details>
 <summary><b>GET - Get a list of all items</b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/items</code>
@@ -136,62 +192,6 @@ When successful will return status code of 200 (OK) and a single item object. He
 </details>
 
 <details>
-<summary><b>GET - Get a user by user id</b></summary>
-<br>
-<b>Endpoint:</b> <code>BaseURL/api/users/:id</code>
-<br>
-<br>
-Restricted endpoint. Token required.
-<br>
-<br>
-When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well their list of favorite items. Here is an example:
-
-```
-{
-    "user": {
-        "id": 1,
-        "email": "admin@email.com",
-        "name": null,
-        "about": null,
-        "avatar_url": null,
-        "items": [
-            {
-                "id": 1,
-                "name": "rice",
-                "description": null,
-                "photo_url": null,
-                "zip_code": "65109C",
-                "price": 2,
-                "created_at": "2019-10-21T04:58:11.423Z",
-                "user_id": 1,
-                "categories": [
-                    {
-                        "id": 2,
-                        "type": "food",
-                        "item_id": 1
-                    }
-                ]
-            }
-        ],
-        "favorites": [
-            {
-                "item_id": 1,
-                "user_id": 1,
-                "id": 1,
-                "name": "rice",
-                "description": null,
-                "photo_url": null,
-                "zip_code": "65109C",
-                "price": 2,
-                "created_at": "2019-10-21T04:58:11.423Z"
-            }
-        ]
-    }
-}
-```
-</details>
-
-<details>
 <summary><b>POST - Post a new item</b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/items</code>
@@ -210,6 +210,39 @@ Requires an object with the following required fields: "name", "zip_code", "pric
 	"zip_code": "0083",
 	"price": 5.75,
 	"user_id": 2
+}
+```
+
+When successful will return status code of 200 (OK) and a single object of the newly created item. Here is an example:
+
+```
+{
+    "id": 2,
+    "name": "Unprocessed Honey",
+    "description": "Fresh local honey that has no artificial ingredients.",
+    "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
+    "zip_code": "0083",
+    "price": 5.75,
+    "created_at": "2019-10-21T17:44:05.057Z",
+    "user_id": 2
+}
+```
+</details>
+
+<details>
+<summary><b>PUT - Edit a new item by item's id</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/items/:id</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+Requires an object with the field(s) being updated:
+
+```
+{
+	"price": 10.75
 }
 ```
 
