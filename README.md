@@ -3,33 +3,61 @@
 Base URL: https://african-marketplace-bw.herokuapp.com
 
 <details>
-<summary> POST - Register a new user</summary>
+<summary><b>POST - Register a new user</b></summary>
 <br>
-Endpoint: BaseURL/api/auth/register
+<b>Endpoint:</b>  BaseURL/api/auth/register
 
 Requires an object with an email and password, both string data types: 
 ```
 {
 	"email": "admin@email.com",
-	"password": "1234"
+	"password": "password"
+}
+```
+
+When successful will return status code of 201 (CREATED) and the new user object and a token (example):
+
+```
+{
+    "new_user": {
+        "id": 2,
+        "email": "admin@email.com",
+        "name": null,
+        "about": null,
+        "avatar_url": null
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6kpXVCJ9..."
 }
 ```
 </details>
 
 <details>
-<summary> POST - Login a user</summary>
+<summary id="title"><b>POST - Login a user</b></summary>
 <br>
-Endpoint: BaseURL/api/auth/login
+<b>Endpoint:</b> BaseURL/api/auth/login
 
 Requires an object with an email and password, both string data types: 
 ```
 {
 	"email": "admin@email.com",
-	"password": "1234"
+	"password": "password"
+}
+```
+
+When successful will return status code of 200 (OK) and the new user object and a token (example):
+
+```
+{
+    "user": {
+        "id": 2,
+        "email": "admin@email.com",
+        "name": null,
+        "about": null,
+        "avatar_url": null
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6kpXVCJ9..."
 }
 ```
 </details>
-
-
 
 
