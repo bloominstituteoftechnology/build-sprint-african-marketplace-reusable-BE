@@ -75,7 +75,7 @@ router.post("/", (req, res) => {
 router.put("/:id", verifyItemExists, (req, res) => {
     const id = req.params.id;
     const changes = req.body;
-    req.body.zip_code = req.body.zip_code.toLowerCase();
+    if (req.body.zip_code) return req.body.zip_code = req.body.zip_code.toUpperCase();
 
     Items.updateItem(id, changes)
         .then(updatedItem => {

@@ -10,7 +10,6 @@ const Favorites = require("../favorites/favorites-model.js");
 router.get("/", (req, res) => {
     Users.getAllUsers()
         .then(users => {
-            delete users.password
             res.status(200).json(users);
         })
         .catch(err => {
