@@ -3,7 +3,7 @@
 Base URL: https://african-marketplace-bw.herokuapp.com
 
 <details>
-<summary id="title"><b>POST - Register a new user</b></summary>
+<summary><b>POST - Register a new user</b></summary>
 <br>
 <b>Endpoint:</b>  BaseURL/api/auth/register
 
@@ -32,7 +32,7 @@ When successful will return status code of 201 (CREATED) and the new user object
 </details>
 
 <details>
-<summary><b>POST - Login a user</b></summary>
+<summary id="title"><b>POST - Login a user</b></summary>
 <br>
 <b>Endpoint:</b> BaseURL/api/auth/login
 
@@ -60,10 +60,4 @@ When successful will return status code of 200 (OK) and the new user object and 
 ```
 </details>
 
-
-<style>
-#title {
-    border: 1px solid;
-}
-</style>
 
