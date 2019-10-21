@@ -22,6 +22,7 @@ router.get("/:id", verifyUserId, async (req, res) => {
     try {
         const id = req.params.id;
         const user = await Users.getUserById(id);
+        user.items = await Users.getItemsByUser(id);
         delete user.password;
         res.status(200).json({ user });
     } catch (error) {
