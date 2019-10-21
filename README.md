@@ -73,6 +73,9 @@ When successful will return status code of 200 (OK), the new item object and a t
 Restricted endpoint. Token required.
 <br>
 <br>
+No body required in the request. 
+<br>
+<br>
 When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well as their list of favorite items. Here is an example:
 
 ```
@@ -129,6 +132,9 @@ When successful will return status code of 200 (OK) and a single user object wit
 Public access endpoint. No token required.
 <br>
 <br>
+No body required in the request. 
+<br>
+<br>
 When successful will return status code of 200 (OK) and an array of item objects. Here is an example:
 
 ```
@@ -164,6 +170,9 @@ When successful will return status code of 200 (OK) and an array of item objects
 <br>
 <br>
 Public access endpoint. No token required.
+<br>
+<br>
+No body required in the request. 
 <br>
 <br>
 When successful will return status code of 200 (OK) and a single item object. Here is an example:
@@ -272,7 +281,8 @@ Restricted endpoint. Token required.
 <br>
 <br>
 No body required in the request. 
-
+<br>
+<br>
 When successful will return an HTTP status code of 200 (OK) and a success message. Here is an example:
 
 ```
@@ -292,8 +302,9 @@ Public access endpoint. No token required.
 <br>
 <br>
 No body required in the request. 
-Zip code can be a combination of numbers and letters but it must match exactly. 
-
+Zip code can be a combination of numbers and letters but it must match, ignoring case. 
+<br>
+<br>
 When successful will return an HTTP status code of 200 (OK) and an array of search results that match the zip code search. Here is an example: 
 
 ```
