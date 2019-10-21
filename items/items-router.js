@@ -21,7 +21,7 @@ router.get("/:id", verifyItemExists, async (req, res) => {
     try {
         const id = req.params.id;
         const item = await Items.getItemById(id);
-        item.category = await Items.getItemsCategories(id);
+        item.categories = await Items.getItemsCategories(id);
 
         res.status(200).json({ item });
     } catch (error) {

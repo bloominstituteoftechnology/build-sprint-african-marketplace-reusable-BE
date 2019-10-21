@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Users = require("./users-model.js");
+const Items = require("../items/items-model.js");
 
 
 // ---------------------- /api/users ---------------------- //
@@ -24,7 +25,14 @@ router.get("/:id", verifyUserId, async (req, res) => {
         const user = await Users.getUserById(id);
         user.items = await Users.getItemsByUser(id);
         delete user.password;
-        res.status(200).json({ user });
+        Promise.all(user.items.map(async item => {
+            const categories = await Items.getItemsCategories(item.id);
+            item.categories = categories;
+            return item
+        })).then(items => {
+            res.status(200).json({ user });
+        })
+
     } catch (error) {
         res.status(500).json({ error });
     }
