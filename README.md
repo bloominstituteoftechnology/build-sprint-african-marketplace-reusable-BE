@@ -48,7 +48,7 @@ Requires an object with an email and password, both string data types:
 }
 ```
 
-When successful will return status code of 200 (OK), the new user object and a token (example):
+When successful will return status code of 200 (OK), the new item object and a token (example):
 
 ```
 {
@@ -187,6 +187,44 @@ When successful will return status code of 200 (OK) and a single user object wit
             }
         ]
     }
+}
+```
+</details>
+
+<details>
+<summary><b>POST - Post a new item</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/items</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+Requires an object with the following required fields: "name", "zip_code", "price", and "user_id". All other fields are optional: 
+
+```
+{
+	"name": "Unprocessed Honey",
+	"description": "Fresh local honey that has no artificial ingredients.",
+	"photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
+	"zip_code": "0083",
+	"price": 5.75,
+	"user_id": 2
+}
+```
+
+When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well their list of favorite items. Here is an example:
+
+```
+{
+    "id": 2,
+    "name": "Unprocessed Honey",
+    "description": "Fresh local honey that has no artificial ingredients.",
+    "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
+    "zip_code": "0083",
+    "price": 5.75,
+    "created_at": "2019-10-21T17:44:05.057Z",
+    "user_id": 2
 }
 ```
 </details>
