@@ -8,10 +8,11 @@ const Users = require("./users-model.js");
 router.get("/", (req, res) => {
     Users.getAllUsers()
         .then(users => {
+            delete users.password
             res.status(200).json(users);
         })
         .catch(err => {
-            res.status(500).json(err);
+            res.status(500).json({ err });
         });
 });
 
@@ -40,7 +41,7 @@ router.put("/:id", verifyUserId, (req, res) => {
             res.status(201).json(updatedUser);
         })
         .catch(err => {
-            res.status(500).json(err);
+            res.status(500).json({ err });
         });
 }
 );
@@ -56,7 +57,7 @@ router.delete("/:id", verifyUserId, (req, res) => {
             res.status(200).json({ message: "User successfully deleted." });
         })
         .catch(err => {
-            res.status(500).json(err);
+            res.status(500).json({ err });
         });
 });
 
@@ -75,7 +76,7 @@ function verifyUserId(req, res, next) {
             }
         })
         .catch(err => {
-            res.status(500).json(err);
+            res.status(500).json({ err });
         });
 }
 
