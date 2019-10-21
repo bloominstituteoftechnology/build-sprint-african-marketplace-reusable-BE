@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 
 // ---------------------- GET User By Id ---------------------- //
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyUserId, async (req, res) => {
     try {
         const id = req.params.id;
         const user = await Users.getUserById(id);
@@ -28,12 +28,43 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+// ---------------------- Edit User By Id ---------------------- //
+
+router.put("/:id", verifyUserId, (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+
+    Users.updateUser(id, changes)
+        .then(updatedUser => {
+            res.status(201).json(updatedUser);
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+}
+);
+
+
+// ---------------------- DELETE User By Id ---------------------- //
+
+router.delete("/:id", verifyUserId, (req, res) => {
+    const id = req.params.id;
+
+    Users.deleteUser(id)
+        .then(deletedUser => {
+            res.status(200).json({ message: "User " + deletedUser + " successfully deleted." });
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+});
+
 // ---------------------- Custom Middleware ---------------------- //
 
 function verifyUserId(req, res, next) {
     const id = req.params.id;
 
-    Users.findById(id)
+    Users.getUserById(id)
         .then(item => {
             if (item) {
                 req.item = item;

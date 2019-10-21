@@ -4,7 +4,9 @@ module.exports = {
     addNewUser,
     getAllUsers,
     findBy,
-    getUserById
+    getUserById,
+    updateUser,
+    deleteUser
 };
 
 function getAllUsers() {
@@ -25,4 +27,16 @@ async function addNewUser(user) {
     const [id] = await db("user").insert(user, "id");
 
     return getUserById(id);
+}
+
+function updateUser(id, changes) {
+    return db("user")
+        .where({ id })
+        .update(changes, "id");
+}
+
+function deleteUser(id) {
+    return db("user")
+        .where({ id })
+        .del();
 }
