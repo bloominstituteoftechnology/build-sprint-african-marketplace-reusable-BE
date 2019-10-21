@@ -213,7 +213,7 @@ Requires an object with the following required fields: "name", "zip_code", "pric
 }
 ```
 
-When successful will return status code of 200 (OK) and a single object of the newly created item. Here is an example:
+When successful will return status code of 201 (CREATED) and a single object of the newly created item. Here is an example:
 
 ```
 {
@@ -230,7 +230,7 @@ When successful will return status code of 200 (OK) and a single object of the n
 </details>
 
 <details>
-<summary><b>PUT - Edit a new item by item's id</b></summary>
+<summary><b>PUT - Edit an item by item's id</b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/items/:id</code>
 <br>
@@ -246,7 +246,7 @@ Requires an object with the field(s) being updated:
 }
 ```
 
-When successful will return status code of 200 (OK) and a single object of the newly created item. Here is an example:
+When successful will return status code of 201 (CREATED) and a single object of the newly created item. Here is an example:
 
 ```
 {
@@ -255,9 +255,29 @@ When successful will return status code of 200 (OK) and a single object of the n
     "description": "Fresh local honey that has no artificial ingredients.",
     "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
     "zip_code": "0083",
-    "price": 5.75,
+    "price": 10.75,
     "created_at": "2019-10-21T17:44:05.057Z",
     "user_id": 2
+}
+```
+</details>
+
+<details>
+<summary><b>DELETE - Delete an item by item's id</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/items/:id</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+No body required in the request. 
+
+When successful will return an HTTP status code of 200 (OK) and a success message. Here is an example:
+
+```
+{
+    "message": "Item successfully deleted from database."
 }
 ```
 </details>
