@@ -9,6 +9,7 @@ BaseURL: https://african-marketplace-bw.herokuapp.com
 <br>
 <br>
 Requires an object with an email and password, both string data types: 
+
 ```
 {
 	"email": "admin@email.com",
@@ -39,6 +40,7 @@ When successful will return status code of 201 (CREATED), the new user object an
 <br>
 <br>
 Requires an object with an email and password, both string data types: 
+
 ```
 {
 	"email": "admin@email.com",
