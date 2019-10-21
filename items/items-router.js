@@ -32,7 +32,7 @@ router.get("/:id", verifyItemExists, async (req, res) => {
 // ------------- GET Item by Zip Code /api/items/zip/:zip_code ------------- //
 
 router.get("/zip/:zip_code", (req, res) => {
-    let zip_code = req.params.zip_code.toLowerCase();
+    let zip_code = req.params.zip_code.toUpperCase();
 
     Items.findBy({ zip_code })
         .then(items => {
@@ -59,7 +59,7 @@ router.get("/name/:name", (req, res) => {
 // ---------------------- Post New Item /api/items ---------------------- //
 
 router.post("/", (req, res) => {
-    req.body.zip_code = req.body.zip_code.toLowerCase();
+    req.body.zip_code = req.body.zip_code.toUpperCase();
 
     Items.addNewItem(req.body)
         .then(item => {
