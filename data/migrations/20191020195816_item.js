@@ -13,7 +13,7 @@ exports.up = function (knex) {
         item.string('zip_code', 50)
             .notNullable()
 
-        item.decimal('price', 2)
+        item.decimal('price')
             .notNullable()
 
         item.timestamp('created_at', { useTz: true }).defaultTo(knex.fn.now());
