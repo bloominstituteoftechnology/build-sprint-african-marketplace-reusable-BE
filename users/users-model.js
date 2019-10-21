@@ -6,7 +6,8 @@ module.exports = {
     findBy,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    getItemsByUser
 };
 
 function getAllUsers() {
@@ -41,4 +42,8 @@ function deleteUser(id) {
     return db("user")
         .where({ id })
         .del();
+}
+
+function getItemsByUser(id) {
+    return db("item").where({ "user_id": id });
 }
