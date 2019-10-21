@@ -15,7 +15,7 @@ Requires an object with an email and password, both string data types:
 }
 ```
 
-When successful will return status code of 201 (CREATED) and the new user object and a token (example):
+When successful will return status code of 201 (CREATED), the new user object and a token (example):
 
 ```
 {
@@ -32,7 +32,7 @@ When successful will return status code of 201 (CREATED) and the new user object
 </details>
 
 <details>
-<summary id="title"><b>POST - Login a user</b></summary>
+<summary><b>POST - Login a user</b></summary>
 <br>
 <b>Endpoint:</b> BaseURL/api/auth/login
 
@@ -44,7 +44,7 @@ Requires an object with an email and password, both string data types:
 }
 ```
 
-When successful will return status code of 200 (OK) and the new user object and a token (example):
+When successful will return status code of 200 (OK), the new user object and a token (example):
 
 ```
 {
@@ -60,4 +60,37 @@ When successful will return status code of 200 (OK) and the new user object and 
 ```
 </details>
 
+<details>
+<summary><b>GET - Get a list of all items by all users</b></summary>
+<br>
+<b>Endpoint:</b> BaseURL/api/items
 
+Public access endpoint. No token required.
+
+When successful will return status code of 200 (OK) and an array of item objects. Here is an example:
+
+```
+[
+    {
+        "id": 1,
+        "name": "rice",
+        "description": null,
+        "photo_url": null,
+        "zip_code": "65109C",
+        "price": 2.25,
+        "created_at": "2019-10-21T04:58:11.423Z",
+        "user_id": 1
+    },  
+    {
+        "id": 2,
+        "name": "beans",
+        "description": null,
+        "photo_url": null,
+        "zip_code": "65109C",
+        "price": 2.75,
+        "created_at": "2019-10-21T04:58:11.423Z",
+        "user_id": 2
+    }
+]
+```
+</details>
