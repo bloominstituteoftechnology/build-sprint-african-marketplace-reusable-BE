@@ -1,15 +1,35 @@
-# back-end
+# Documentation for Sauti API
 
 Base URL: https://african-marketplace-bw.herokuapp.com
 
-Register: `/api/auth/register` METHOD: `POST`
+<details>
+<summary> POST - Register a new user</summary>
+<br>
+Endpoint: BaseURL/api/auth/register
 
-Login: `/api/auth/register` METHOD: `POST`
-
-Requires you to send an object with an email and password, both string data types: 
+Requires an object with an email and password, both string data types: 
 ```
-   {
+{
 	"email": "admin@email.com",
 	"password": "1234"
-    }
+}
 ```
+</details>
+
+<details>
+<summary> POST - Login a user</summary>
+<br>
+Endpoint: BaseURL/api/auth/login
+
+Requires an object with an email and password, both string data types: 
+```
+{
+	"email": "admin@email.com",
+	"password": "1234"
+}
+```
+</details>
+
+
+
+
