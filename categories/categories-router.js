@@ -6,7 +6,7 @@ const Category = require("./categories-model.js");
 // ---------------------- /api/category ---------------------- //
 
 router.get("/", (req, res) => {
-    Category.getAllCategories()
+    Category.getAllCategoriesWithItems()
         .then(categories => {
             res.status(200).json(categories);
         })

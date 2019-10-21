@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Users = require("./users-model.js");
 const Items = require("../items/items-model.js");
+const Favorites = require("../favorites/favorites-model.js");
 
 
 // ---------------------- /api/users ---------------------- //
@@ -24,6 +25,7 @@ router.get("/:id", verifyUserId, async (req, res) => {
         const id = req.params.id;
         const user = await Users.getUserById(id);
         user.items = await Users.getItemsByUser(id);
+        user.favorites = await Favorites.getUsersFavorites(id);
         delete user.password;
         Promise.all(user.items.map(async item => {
             const categories = await Items.getItemsCategories(item.id);
@@ -32,7 +34,6 @@ router.get("/:id", verifyUserId, async (req, res) => {
         })).then(items => {
             res.status(200).json({ user });
         })
-
     } catch (error) {
         res.status(500).json({ error });
     }
