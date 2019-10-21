@@ -2,15 +2,16 @@ const db = require("../data/dbConfig.js");
 
 module.exports = {
     addNewCategory,
-    getAllCategories,
+    getAllCategoriesWithItems,
     findBy,
     getCategoryById,
-    updateCategory,
     deleteCategory
 };
 
-function getAllCategories() {
-    return db("category");
+async function getAllCategoriesWithItems() {
+    const list = await db("category").distinct("category.type");
+
+    return list;
 }
 
 function getCategoryById(id) {
@@ -27,14 +28,6 @@ async function addNewCategory(category) {
     const [id] = await db("category").insert(category, "id");
 
     return getCategoryById(id);
-}
-
-async function updateCategory(id, changes) {
-    await db("category")
-        .where({ id })
-        .update(changes)
-
-    return getUserById(id);
 }
 
 function deleteCategory(id) {
