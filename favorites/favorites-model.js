@@ -26,9 +26,9 @@ async function addFavorite(user_id, item_id) {
 }
 
 
-function deleteFavorite(id) {
+function deleteFavorite(user_id, item_id) {
     return db("favorite")
-        .where({ id })
+        .where({ user_id, item_id })
         .del();
 }
 
