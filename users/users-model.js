@@ -29,10 +29,12 @@ async function addNewUser(user) {
     return getUserById(id);
 }
 
-function updateUser(id, changes) {
-    return db("user")
+async function updateUser(id, changes) {
+    await db("user")
         .where({ id })
-        .update(changes, "id");
+        .update(changes)
+
+    return getUserById(id);
 }
 
 function deleteUser(id) {

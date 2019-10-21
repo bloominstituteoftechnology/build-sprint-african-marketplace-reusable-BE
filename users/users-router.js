@@ -36,6 +36,7 @@ router.put("/:id", verifyUserId, (req, res) => {
 
     Users.updateUser(id, changes)
         .then(updatedUser => {
+            delete updatedUser.password;
             res.status(201).json(updatedUser);
         })
         .catch(err => {
@@ -52,7 +53,7 @@ router.delete("/:id", verifyUserId, (req, res) => {
 
     Users.deleteUser(id)
         .then(deletedUser => {
-            res.status(200).json({ message: "User " + deletedUser + " successfully deleted." });
+            res.status(200).json({ message: "User successfully deleted." });
         })
         .catch(err => {
             res.status(500).json(err);
