@@ -134,3 +134,60 @@ When successful will return status code of 200 (OK) and a single item object. He
 }
 ```
 </details>
+
+<details>
+<summary><b>GET - Get a user by user id</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/users/:id</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well their list of favorite items. Here is an example:
+
+```
+{
+    "user": {
+        "id": 1,
+        "email": "admin@email.com",
+        "name": null,
+        "about": null,
+        "avatar_url": null,
+        "items": [
+            {
+                "id": 1,
+                "name": "rice",
+                "description": null,
+                "photo_url": null,
+                "zip_code": "65109c",
+                "price": 2,
+                "created_at": "2019-10-21T04:58:11.423Z",
+                "user_id": 1,
+                "categories": [
+                    {
+                        "id": 2,
+                        "type": "food",
+                        "item_id": 1
+                    }
+                ]
+            }
+        ],
+        "favorites": [
+            {
+                "item_id": 1,
+                "user_id": 1,
+                "id": 1,
+                "name": "rice",
+                "description": null,
+                "photo_url": null,
+                "zip_code": "65109c",
+                "price": 2,
+                "created_at": "2019-10-21T04:58:11.423Z"
+            }
+        ]
+    }
+}
+```
+</details>
+
