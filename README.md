@@ -213,7 +213,7 @@ Requires an object with the following required fields: "name", "zip_code", "pric
 }
 ```
 
-When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well their list of favorite items. Here is an example:
+When successful will return status code of 200 (OK) and a single object of the newly created item. Here is an example:
 
 ```
 {
