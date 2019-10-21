@@ -73,7 +73,7 @@ When successful will return status code of 200 (OK), the new item object and a t
 Restricted endpoint. Token required.
 <br>
 <br>
-When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well their list of favorite items. Here is an example:
+When successful will return status code of 200 (OK) and a single user object with an array of the items they've posted as well as their list of favorite items. Here is an example:
 
 ```
 {
@@ -319,5 +319,43 @@ When successful will return an HTTP status code of 200 (OK) and an array of sear
         "user_id": 3
     }
 ]
+```
+</details>
+
+<details>
+<summary><b>POST - Add an item to a user's favorites list</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/items/favorites/:user_id</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+Requires a request body that is an object with the following shape. This is an example:
+
+```
+{
+    "item_id": 4
+}
+```
+
+When successful will return an HTTP status code of 200 (OK) and an array of that user's favorites like this: 
+
+```
+{
+    "favorites": [
+        {
+            "item_id": 5,
+            "user_id": 3,
+            "id": 5,
+            "name": "Unprocessed Honey",
+            "description": "Fresh local honey that has no artificial ingredients.",
+            "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
+            "zip_code": "65109H",
+            "price": 10.75,
+            "created_at": "2019-10-21T20:02:38.641Z"
+        }
+    ]
+}
 ```
 </details>
