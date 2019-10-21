@@ -119,7 +119,7 @@ When successful will return status code of 200 (OK) and a single item object. He
         "name": "rice",
         "description": null,
         "photo_url": null,
-        "zip_code": "65109c",
+        "zip_code": "65109C",
         "price": 2,
         "created_at": "2019-10-21T04:58:11.423Z",
         "user_id": 1,
@@ -160,7 +160,7 @@ When successful will return status code of 200 (OK) and a single user object wit
                 "name": "rice",
                 "description": null,
                 "photo_url": null,
-                "zip_code": "65109c",
+                "zip_code": "65109C",
                 "price": 2,
                 "created_at": "2019-10-21T04:58:11.423Z",
                 "user_id": 1,
@@ -181,7 +181,7 @@ When successful will return status code of 200 (OK) and a single user object wit
                 "name": "rice",
                 "description": null,
                 "photo_url": null,
-                "zip_code": "65109c",
+                "zip_code": "65109C",
                 "price": 2,
                 "created_at": "2019-10-21T04:58:11.423Z"
             }
