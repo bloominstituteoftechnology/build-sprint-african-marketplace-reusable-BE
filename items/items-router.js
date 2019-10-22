@@ -40,33 +40,6 @@ router.get("/:id", verifyItemExists, async (req, res) => {
     }
 });
 
-// ------------- GET Item by Zip Code /api/items/zip/:zip_code ------------- //
-
-router.get("/zip/:zip_code", (req, res) => {
-    let zip_code = req.params.zip_code.toUpperCase();
-
-    Items.findBy({ zip_code })
-        .then(items => {
-            res.status(200).json(items)
-        })
-        .catch(err => {
-            res.status(500).json({ err })
-        });
-});
-
-// ------------- GET Item by Item Name /api/items/name/:name ------------- //
-
-// router.get("/name/:name", (req, res) => {
-//     const name = req.params.name;
-//     Items.findBy({ name })
-//         .then(items => {
-//             res.status(200).json(items)
-//         })
-//         .catch(err => {
-//             res.status(500).json({ err })
-//         });
-// })
-
 
 // ------------- GET Search for an Item by Like Name /api/items/search/:name ------------- //
 
@@ -84,7 +57,7 @@ router.get("/search/:name", (req, res) => {
 // ---------------------- Post New Item /api/items ---------------------- //
 
 router.post("/", (req, res) => {
-    req.body.zip_code = req.body.zip_code.toUpperCase();
+    req.body.country = req.body.country.toUpperCase();
 
     Items.addNewItem(req.body)
         .then(item => {
@@ -100,7 +73,7 @@ router.post("/", (req, res) => {
 router.put("/:id", verifyItemExists, (req, res) => {
     const id = req.params.id;
     const changes = req.body;
-    if (req.body.zip_code) return req.body.zip_code = req.body.zip_code.toUpperCase();
+    if (req.body.country) return req.body.country = req.body.country.toUpperCase();
 
     Items.updateItem(id, changes)
         .then(updatedItem => {

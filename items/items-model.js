@@ -13,7 +13,7 @@ module.exports = {
 
 function getAllItems() {
     return db("item").join("user", "item.user_id", "user.id")
-        .select("item.id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
+        .select("item.id", "item.name", "item.description", "item.photo_url", "item.city", "item.country", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
 }
 
 function getItemById(id) {
@@ -21,7 +21,7 @@ function getItemById(id) {
         .where("item.id", id)
         .first()
         .join("user", "item.user_id", "user.id")
-        .select("item.id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
+        .select("item.id", "item.name", "item.description", "item.photo_url", "item.city", "item.country", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
 }
 
 function findBy(filter) {
@@ -31,7 +31,7 @@ function findBy(filter) {
 function search(value) {
     return db("item").where(db.raw('LOWER("name")'), "like", `%${value.toLowerCase()}%`)
         .join("user", "item.user_id", "user.id")
-        .select("item.id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
+        .select("item.id", "item.name", "item.description", "item.photo_url", "item.city", "item.country", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
 }
 
 async function addNewItem(item) {

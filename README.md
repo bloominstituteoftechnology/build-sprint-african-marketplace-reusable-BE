@@ -341,47 +341,6 @@ When successful will return an HTTP status code of 200 (OK) and a success messag
 </details>
 
 <details>
-<summary><b>GET - Get a list of items by zip code</b></summary>
-<br>
-<b>Endpoint:</b> <code>BaseURL/api/items/zip/:zip</code>
-<br>
-<br>
-Public access endpoint. No token required.
-<br>
-<br>
-No body required in the request. 
-Zip code can be a combination of numbers and letters but it must match, ignoring case. 
-<br>
-<br>
-When successful will return an HTTP status code of 200 (OK) and an array of search results that match the zip code search. Here is an example: 
-
-```
-[
-    {
-        "id": 3,
-        "name": "Exotic Chicken",
-        "description": "Exotic locally raised chicken that have never been treated with hormones or antibiotics. Grass fed and cage free.",
-        "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
-        "zip_code": "65109H",
-        "price": 10.75,
-        "created_at": "2019-10-21T19:33:27.498Z",
-        "user_id": 2
-    },
-    {
-        "id": 5,
-        "name": "Unprocessed Honey",
-        "description": "Fresh local honey that has no artificial ingredients.",
-        "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
-        "zip_code": "65109H",
-        "price": 10.75,
-        "created_at": "2019-10-21T20:02:38.641Z",
-        "user_id": 3
-    }
-]
-```
-</details>
-
-<details>
 <summary><b>POST - Add an item to a user's favorites list</b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/favorites/:user_id</code>
