@@ -25,7 +25,6 @@ function getItemById(id) {
 }
 
 function findBy(filter) {
-    console.log("filter", filter)
     return db("item").where(filter);
 }
 
@@ -58,3 +57,4 @@ function deleteItem(id) {
 function getItemsCategories(id) {
     return db("category").where({ "item_id": id });
 }
+

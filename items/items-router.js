@@ -1,18 +1,26 @@
 const router = require("express").Router();
 
 const Items = require("./items-model.js");
+const Favorites = require("../favorites/favorites-model.js")
 
 
 // ---------------------- /api/items ---------------------- //
 
-router.get("/", (req, res) => {
-    Items.getAllItems()
-        .then(items => {
+router.get("/", async (req, res) => {
+    try {
+        const items = await Items.getAllItems();
+
+        Promise.all(items.map(async item => {
+            const favorited = await Favorites.getFavoritesCount(item.id)
+            item.favorited = favorited.count;
+            return item;
+        })).then(items => {
             res.status(200).json(items);
         })
-        .catch(err => {
-            res.status(500).json({ err });
-        });
+
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 });
 
 // ------------------- GET Item By Id /api/items/:id ------------------- //
@@ -22,7 +30,8 @@ router.get("/:id", verifyItemExists, async (req, res) => {
         const id = req.params.id;
         const item = await Items.getItemById(id);
         item.categories = await Items.getItemsCategories(id);
-
+        const favorited = await Favorites.getFavoritesCount(id);
+        item.favorited = favorited.count;
         res.status(200).json({ item });
     } catch (error) {
         res.status(500).json({ error });

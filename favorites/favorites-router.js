@@ -27,4 +27,17 @@ router.post("/:id", (req, res) => {
         })
 })
 
+router.delete("/:id", (req, res) => {
+    const user_id = req.params.id;
+    const item_id = req.body.item_id;
+
+    Favorites.deleteFavorite(user_id, item_id)
+        .then(favorite => {
+            res.status(200).json({ message: "Favorite successfully deleted." })
+        })
+        .catch(err => {
+            res.status(500).json({ err })
+        })
+})
+
 module.exports = router;

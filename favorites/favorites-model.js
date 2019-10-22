@@ -5,7 +5,8 @@ module.exports = {
     findBy,
     getFavoriteById,
     deleteFavorite,
-    getUsersFavorites
+    getUsersFavorites,
+    getFavoritesCount
 };
 
 
@@ -42,3 +43,13 @@ async function getUsersFavorites(user_id) {
     return favorites;
 }
 
+// async function getFavoritesCount(item_id) {
+//     const list = await db("favorite").where({ item_id })
+//     let count = list.length;
+
+//     return count;
+// }
+
+async function getFavoritesCount(item_id) {
+    return db("favorite").where("item_id", "=", item_id).count("item_id as count").first();
+}
