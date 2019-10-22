@@ -3,6 +3,9 @@ const bcrypt = require("bcryptjs");
 
 exports.seed = function (knex) {
   // Deletes ALL existing entries
+  knex('category').truncate();
+  knex('favorite').truncate();
+  knex('item').truncate();
   return knex('user').truncate()
     .then(function () {
       // Inserts seed entries
