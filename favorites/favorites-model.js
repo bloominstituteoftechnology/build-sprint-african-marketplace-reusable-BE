@@ -5,7 +5,8 @@ module.exports = {
     findBy,
     getFavoriteById,
     deleteFavorite,
-    getUsersFavorites
+    getUsersFavorites,
+    getFavoritesCount
 };
 
 
@@ -33,12 +34,22 @@ function deleteFavorite(user_id, item_id) {
 }
 
 async function getUsersFavorites(user_id) {
-
     const favorites = await db("favorite").where("favorite.user_id", user_id)
         .join("item", "favorite.item_id", "item.id")
         .join("user", "favorite.user_id", "user.id")
         .select("favorite.item_id", "favorite.user_id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "user.email", "user.username", "user.about", "user.avatar_url");
 
-    return favorites;
+    return Promise.all(favorites.map(async item => {
+        const favorited = await getFavoritesCount(item.item_id)
+        item.favorited = favorited.count;
+        return item;
+    })).then(() => {
+        return favorites;
+    }).catch(err => {
+        return { err }
+    })
 }
 
+async function getFavoritesCount(item_id) {
+    return db("favorite").where("item_id", "=", item_id).count("item_id as count").first();
+}

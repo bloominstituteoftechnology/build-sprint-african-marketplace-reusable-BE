@@ -28,6 +28,8 @@ router.get("/:id", verifyUserId, async (req, res) => {
         delete user.password;
         Promise.all(user.items.map(async item => {
             const categories = await Items.getItemsCategories(item.id);
+            const favorited = await Favorites.getFavoritesCount(item.id)
+            item.favorited = favorited.count;
             item.categories = categories;
             return item
         })).then(items => {
