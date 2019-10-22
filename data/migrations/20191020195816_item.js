@@ -10,7 +10,10 @@ exports.up = function (knex) {
 
         item.string('photo_url', 3000)
 
-        item.string('zip_code', 50)
+        item.string('city', 50)
+            .notNullable()
+
+        item.string('country', 50)
             .notNullable()
 
         item.float('price')
