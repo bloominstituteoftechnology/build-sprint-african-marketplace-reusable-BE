@@ -44,8 +44,6 @@ async function getUsersFavorites(user_id) {
         item.favorited = favorited.count;
         return item;
     })).then(() => {
-        console.log("triggering")
-        console.log(favorites)
         return favorites;
     }).catch(err => {
         return { err }
