@@ -7,7 +7,8 @@ module.exports = {
     getItemById,
     updateItem,
     deleteItem,
-    getItemsCategories
+    getItemsCategories,
+    search
 };
 
 function getAllItems() {
@@ -26,6 +27,12 @@ function getItemById(id) {
 function findBy(filter) {
     console.log("filter", filter)
     return db("item").where(filter);
+}
+
+function search(value) {
+    return db("item").where("name", "like", `%${value}%`)
+        .join("user", "item.user_id", "user.id")
+        .select("item.id", "item.name", "item.description", "item.photo_url", "item.zip_code", "item.price", "item.created_at", "item.user_id", "user.email", "user.username", "user.about", "user.avatar_url");
 }
 
 async function addNewItem(item) {

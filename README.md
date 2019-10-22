@@ -201,6 +201,54 @@ When successful will return status code of 200 (OK) and a single item object. He
 </details>
 
 <details>
+<summary><b>GET - Search for an item by like name</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/items/search/:value</code>
+<br>
+<br>
+Public access endpoint. No token required.
+<br>
+<br>
+No body required in the request. The value you send as the endpoint param will search for any item with a like name. It will ignore casing.
+<br>
+<br>
+When successful will return status code of 200 (OK) and an arry of search results. Here is an example when we search for "ic":
+
+```
+[
+    {
+        "id": 2,
+        "name": "Exotic Chicken",
+        "description": "Fresh local honey that has no artificial ingredients.",
+        "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
+        "zip_code": "0083HJ",
+        "price": 10.75,
+        "created_at": "2019-10-21 22:43:36",
+        "user_id": 1,
+        "email": "admin@email.com",
+        "username": "Amanda Lane",
+        "about": null,
+        "avatar_url": null
+    },
+    {
+        "id": 3,
+        "name": "Rice",
+        "description": "Fresh local rice that has no artificial ingredients.",
+        "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
+        "zip_code": "0083HJ",
+        "price": 2,
+        "created_at": "2019-10-21 22:46:48",
+        "user_id": 1,
+        "email": "admin@email.com",
+        "username": "Amanda Lane",
+        "about": null,
+        "avatar_url": null
+    }
+]
+```
+</details>
+
+<details>
 <summary><b>POST - Post a new item</b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/items</code>

@@ -45,9 +45,23 @@ router.get("/zip/:zip_code", (req, res) => {
 
 // ------------- GET Item by Item Name /api/items/name/:name ------------- //
 
-router.get("/name/:name", (req, res) => {
+// router.get("/name/:name", (req, res) => {
+//     const name = req.params.name;
+//     Items.findBy({ name })
+//         .then(items => {
+//             res.status(200).json(items)
+//         })
+//         .catch(err => {
+//             res.status(500).json({ err })
+//         });
+// })
+
+
+// ------------- GET Search for an Item by Like Name /api/items/search/:name ------------- //
+
+router.get("/search/:name", (req, res) => {
     const name = req.params.name;
-    Items.findBy({ name })
+    Items.search(name)
         .then(items => {
             res.status(200).json(items)
         })
