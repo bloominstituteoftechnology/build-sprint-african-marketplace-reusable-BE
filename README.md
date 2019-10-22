@@ -201,7 +201,7 @@ When successful will return status code of 200 (OK) and a single item object. He
 </details>
 
 <details>
-<summary><b>GET - Search for an item by like name</b></summary>
+<summary><b>GET - Search for an item by name</b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/items/search/:value</code>
 <br>

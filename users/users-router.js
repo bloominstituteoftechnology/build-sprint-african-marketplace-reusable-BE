@@ -31,10 +31,11 @@ router.get("/:id", verifyUserId, async (req, res) => {
             const favorited = await Favorites.getFavoritesCount(item.id)
             item.favorited = favorited.count;
             item.categories = categories;
-            return item
-        })).then(items => {
-            res.status(200).json({ user });
-        })
+            return item;
+        }))
+            .then(items => {
+                res.status(200).json({ user });
+            })
     } catch (error) {
         res.status(500).json({ error });
     }
