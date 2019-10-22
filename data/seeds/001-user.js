@@ -3,10 +3,7 @@ const bcrypt = require("bcryptjs");
 
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  knex('category').truncate();
-  knex('favorite').truncate();
-  knex('item').truncate();
-  return knex('user').truncate()
+  return knex('user').del()
     .then(function () {
       // Inserts seed entries
       const hash = bcrypt.hashSync("password", 10); // 2 ^ n
