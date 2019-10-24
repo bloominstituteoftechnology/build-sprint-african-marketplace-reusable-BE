@@ -387,6 +387,7 @@ User Data
 | id         | integer   | auto-assigns            |
 | email      | string    | Yes, and must be unique |
 | password   | string    | Yes                     |
+| username   | string    | No                      |
 | about      | string    | No                      |
 | avatar_url | string    | No                      |
 
