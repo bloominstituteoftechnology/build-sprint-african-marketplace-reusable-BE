@@ -92,7 +92,8 @@ When successful will return status code of 200 (OK) and a single user object wit
                 "name": "rice",
                 "description": null,
                 "photo_url": null,
-                "zip_code": "65109C",
+                "city": "Ngozi",
+                "country": "BDI",
                 "price": 2,
                 "created_at": "2019-10-21T04:58:11.423Z",
                 "user_id": 1,
@@ -113,7 +114,8 @@ When successful will return status code of 200 (OK) and a single user object wit
                 "name": "rice",
                 "description": null,
                 "photo_url": null,
-                "zip_code": "65109C",
+                "city": "Ngozi",
+                "country": "BDI",
                 "price": 2,
                 "created_at": "2019-10-21T04:58:11.423Z"
             }
@@ -144,7 +146,8 @@ When successful will return status code of 200 (OK) and an array of item objects
         "name": "rice",
         "description": null,
         "photo_url": null,
-        "zip_code": "65109C",
+        "city": "Ngozi",
+        "country": "BDI",
         "price": 2.25,
         "created_at": "2019-10-21T04:58:11.423Z",
         "user_id": 1
@@ -154,7 +157,8 @@ When successful will return status code of 200 (OK) and an array of item objects
         "name": "beans",
         "description": null,
         "photo_url": null,
-        "zip_code": "65109C",
+        "city": "Ngozi",
+        "country": "BDI",
         "price": 2.75,
         "created_at": "2019-10-21T04:58:11.423Z",
         "user_id": 2
