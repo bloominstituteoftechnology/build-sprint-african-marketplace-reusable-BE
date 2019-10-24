@@ -56,7 +56,7 @@ router.get("/search/:name", (req, res) => {
 
 // ---------------------- Post New Item /api/items ---------------------- //
 
-router.post("/", (req, res) => {
+router.post("/", validateItemContent, (req, res) => {
     req.body.country = req.body.country.toUpperCase();
 
     Items.addNewItem(req.body)
@@ -70,7 +70,7 @@ router.post("/", (req, res) => {
 
 // ---------------------- PUT New Item by ID /api/items ---------------------- //
 
-router.put("/:id", verifyItemExists, (req, res) => {
+router.put("/:id", verifyItemExists, validateEditContent, (req, res) => {
     const id = req.params.id;
     const changes = req.body;
     if (req.body.country) return req.body.country = req.body.country.toUpperCase();
@@ -82,8 +82,7 @@ router.put("/:id", verifyItemExists, (req, res) => {
         .catch(err => {
             res.status(500).json({ err });
         });
-}
-);
+});
 
 // ---------------------- DELETE New Item by ID /api/items ------------------- //
 
@@ -118,5 +117,25 @@ function verifyItemExists(req, res, next) {
         });
 }
 
+function validateEditContent(req, res, next) {
+    if (req.body.name === null || req.body.city === null || req.body.country === null || req.body.price === null || req.body.user_id === null ||
+        req.body.name === "" || req.body.city === "" || req.body.country === "" || req.body.price === "" || req.body.user_id === "") {
+        res
+            .status(400)
+            .json({ message: "The following fields are not allowed to be null: name, city, country, price, and user_id" });
+    } else {
+        next();
+    }
+}
+
+function validateItemContent(req, res, next) {
+    if (!req.body.name || !req.body.city || !req.body.country || !req.body.price || !req.body.user_id) {
+        res
+            .status(400)
+            .json({ message: "The following fields are not allowed to be null: name, city, country, price, and user_id" });
+    } else {
+        next();
+    }
+}
 
 module.exports = router;
