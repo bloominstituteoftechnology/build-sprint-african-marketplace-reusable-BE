@@ -73,7 +73,7 @@ router.post("/", validateItemContent, (req, res) => {
 router.put("/:id", verifyItemExists, validateEditContent, (req, res) => {
     const id = req.params.id;
     const changes = req.body;
-    if (req.body.country) return req.body.country = req.body.country.toUpperCase();
+    // if (req.body.country) return req.body.country = req.body.country.toUpperCase();
 
     Items.updateItem(id, changes)
         .then(updatedItem => {
