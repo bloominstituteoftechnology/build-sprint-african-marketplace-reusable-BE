@@ -6,7 +6,7 @@ const Users = require("../users/users-model.js");
 
 // ---------------------- /api/auth ---------------------- //
 
-router.post("/register", (req, res) => {
+router.post("/register", validateUserContent, (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
     user.password = hash;
@@ -22,7 +22,7 @@ router.post("/register", (req, res) => {
         });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", validateUserContent, (req, res) => {
     let { email, password } = req.body;
 
     Users.findBy({ email })
@@ -60,14 +60,14 @@ function generateToken(user) {
 
 // ---------------------- Custom Middleware ---------------------- //
 
-// function validateUserContent(req, res, next) {
-//   if (!req.body.username || !req.body.password) {
-//     res
-//       .status(400)
-//       .json({ message: "Username & password fields are required." });
-//   } else {
-//     next();
-//   }
-// }
+function validateUserContent(req, res, next) {
+    if (!req.body.email || !req.body.password) {
+        res
+            .status(400)
+            .json({ message: "Email & password fields are required." });
+    } else {
+        next();
+    }
+}
 
 module.exports = router;
