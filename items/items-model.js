@@ -1,5 +1,7 @@
 const db = require("../data/dbConfig.js");
 
+const Users = require("../users/users-model");
+
 module.exports = {
     addNewItem,
     getAllItems,
@@ -45,7 +47,9 @@ async function updateItem(id, changes) {
         .where({ id })
         .update(changes)
 
-    return getItemById(id);
+    const item = await getItemById(id)
+
+    return Users.getItemsByUser(item.user_id);
 }
 
 function deleteItem(id) {
