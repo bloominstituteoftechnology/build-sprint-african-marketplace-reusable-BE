@@ -377,3 +377,30 @@ When successful will return an HTTP status code of 200 (OK) and an array of that
 }
 ```
 </details>
+
+### Table Entities
+
+User Data 
+
+| attribute  | data type | required                |
+|------------|-----------|-------------------------|
+| id         | integer   | auto-assigns            |
+| email      | string    | Yes, and must be unique |
+| password   | string    | Yes                     |
+| about      | string    | No                      |
+| avatar_url | string    | No                      |
+
+Item Data
+
+| attribute   | data type | required     |
+|-------------|-----------|--------------|
+| id          | integer   | auto-assigns |
+| name        | string    | Yes          |
+| description | string    | No           |
+| photo_url   | string    | No           |
+| city        | string    | Yes          |
+| country     | string    | Yes          |
+| price       | float     | Yes          |
+| created_at  | timestamp | auto-assigns |
+| user_id     | integer   | Yes          |
+
