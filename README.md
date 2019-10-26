@@ -4,10 +4,8 @@ BaseURL: https://african-marketplace-bw.herokuapp.com
 
 <details>
 <summary><b>POST - Register a new user</b></summary>
-<br>
-<b>Endpoint:</b>  <code>BaseURL/api/auth/register</code>
-<br>
-<br>
+
+Endpoint: BaseURL/api/auth/register
 Requires an object with an email and password, both string data types: 
 
 ```
