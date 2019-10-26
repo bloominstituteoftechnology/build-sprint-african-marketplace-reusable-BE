@@ -1,7 +1,8 @@
 const router = require("express").Router();
 
 const Items = require("./items-model.js");
-const Favorites = require("../favorites/favorites-model.js")
+const Favorites = require("../favorites/favorites-model.js");
+const restricted = require("../auth/restricted-middleware.js");
 
 
 // ---------------------- /api/items ---------------------- //
@@ -56,7 +57,7 @@ router.get("/search/:name", (req, res) => {
 
 // ---------------------- Post New Item /api/items ---------------------- //
 
-router.post("/", validateItemContent, (req, res) => {
+router.post("/", restricted, validateItemContent, (req, res) => {
     req.body.country = req.body.country.toUpperCase();
 
     Items.addNewItem(req.body)
@@ -70,7 +71,7 @@ router.post("/", validateItemContent, (req, res) => {
 
 // ---------------------- PUT New Item by ID /api/items ---------------------- //
 
-router.put("/:id", verifyItemExists, validateEditContent, (req, res) => {
+router.put("/:id", restricted, verifyItemExists, validateEditContent, (req, res) => {
     const id = req.params.id;
     const changes = req.body;
     // if (req.body.country) return req.body.country = req.body.country.toUpperCase();
@@ -86,7 +87,7 @@ router.put("/:id", verifyItemExists, validateEditContent, (req, res) => {
 
 // ---------------------- DELETE New Item by ID /api/items ------------------- //
 
-router.delete("/:id", verifyItemExists, (req, res) => {
+router.delete("/:id", restricted, verifyItemExists, (req, res) => {
     const id = req.params.id;
 
     Items.deleteItem(id)
