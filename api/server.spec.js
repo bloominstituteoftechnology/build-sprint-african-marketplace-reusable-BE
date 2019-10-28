@@ -29,18 +29,25 @@ describe("server.js", () => {
         })
 
         it("should insert a new user into the database", async () => {
-            await request(server).post("/api/auth/register").send({ email: "admin@email.com", password: "123456" }).set('Accept', 'application/json').expect('Content-Type', /json/)
+            await request(server).post("/api/auth/register").send({ email: "admin@email.com", password: "123456" }).set('Accept', 'application/json').expect('Content-Type', /json/).expect(201)
 
             const res = await request(server).get("/api/users/");
+            expect(res.status).toEqual(200);
             expect(res.body.length).toEqual(1);
             expect(res.body[0].email).toBe("admin@email.com")
-            expect(res.status).toEqual(200);
         })
 
         it("GET/ users should respond with a status of 200 OK", async () => {
             request(server).get("/users").expect(200)
             request(server).get("/users/1").expect(200)
         })
+
+        it('expect response to be json', async () => {
+            await request(server).post("/api/auth/register").send({ email: "admin@email.com", password: "123456" }).set('Accept', 'application/json').expect('Content-Type', /json/).expect(201)
+
+            await request(server).post("/api/auth/login").send({ email: "admin@email.com", password: "123456" }).set('Accept', 'application/json').expect('Content-Type', /json/).expect(200)
+        })
+
     })
 
 })

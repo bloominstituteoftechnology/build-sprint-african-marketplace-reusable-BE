@@ -18,7 +18,7 @@ router.post("/register", validateUserContent, (req, res) => {
             res.status(201).json({ new_user, token });
         })
         .catch(error => {
-            res.status(500).json(error);
+            res.status(500).json({ error });
         });
 });
 
@@ -55,7 +55,7 @@ function generateToken(user) {
     const options = {
         expiresIn: "7d"
     };
-    return jwt.sign(payload, process.env.SECRET, options);
+    return jwt.sign(payload, process.env.SECRET || "testing token", options);
 }
 
 // ---------------------- Custom Middleware ---------------------- //
