@@ -351,7 +351,36 @@ When successful will return an HTTP status code of 200 (OK) and a success messag
 </details>
 
 <details>
-<summary><b>POST - Post a new category</b></summary>
+<summary><b>POST - Post a new category to an item</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/category</code>
+<br>
+<br>
+Restricted endpoint. Token required.
+<br>
+<br>
+Think of this like a "tag". All categories belong to an item and require an item id. The "type" and "item_id" are required:
+
+```
+{
+	"type": "Poultry",
+    "item_id": 3
+}
+```
+
+When successful will return status code of 201 (CREATED) and a single object of the newly created category. Here is an example:
+
+```
+{
+    "id": 4,
+    "type": "food",
+    "item_id": 2
+}
+```
+</details>
+
+<details>
+<summary><b>DELETE - Delete a category </b></summary>
 <br>
 <b>Endpoint:</b> <code>BaseURL/api/category</code>
 <br>
@@ -402,16 +431,20 @@ When successful will return an HTTP status code of 200 (OK) and an array of that
 {
     "favorites": [
         {
-            "item_id": 5,
-            "user_id": 3,
-            "id": 5,
-            "name": "Unprocessed Honey",
-            "description": "Fresh local honey that has no artificial ingredients.",
-            "photo_url": "https://www.indianapolisorchard.com/wp-content/uploads/2014/02/apple-varieties-587.jpg",
-            "city": "Ngozi",
+            "item_id": 2,
+            "user_id": 1,
+            "name": "Exotic Eggs",
+            "description": "Local, cage-free fresh farm Exotic Eggs sold by the half dozen.",
+            "photo_url": "https://images.unsplash.com/photo-1569127959161-2b1297b2d9a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+            "city": "Gitega",
             "country": "BDI",
-            "price": 10.75,
-            "created_at": "2019-10-21T20:02:38.641Z"
+            "price": 4.75,
+            "created_at": "2019-10-22T17:22:45.826Z",
+            "email": "testuser@email.com",
+            "username": "SMP Admin2",
+            "about": "This is the sub admin account.",
+            "avatar_url": "https://www.chsbuffalo.org/sites/default/files/styles/crop_230x230/public/default_images/profile-default_0.jpg?itok=DTiAzsNA",
+            "favorited": "2"
         }
     ]
 }
