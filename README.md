@@ -2,7 +2,7 @@
 
 If you reuse this back-end, please submit a pull request to add the link to your deployed front-end site :)
 
-<b>BaseURL:</b> https://african-marketplace-bw.herokuapp.com
+<b>BaseURL:</b> https://bw-african-marketplace.herokuapp.com/
 
 <details>
 <summary><b>POST - Register a new user</b></summary>
